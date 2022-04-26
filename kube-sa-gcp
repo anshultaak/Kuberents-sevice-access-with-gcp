@@ -1,0 +1,7 @@
+gcloud iam service-accounts add-iam-policy-binding --role roles/iam.workloadIdentityUser --member "serviceAccount:sharedinfra-svc-test00.svc.id.goog[namespace_name/application_sa_name]" gcp-service-account_name
+# this command on run local cmd and it connect application service access to GCP
+
+
+# all information got fro this command
+kubectl.exe get sa -n mtievs-dev01-e4
+kubectl.exe get sa mti-evs-messagepublisher-svc-sa -n mtievs-dev01-e4 -o yaml
