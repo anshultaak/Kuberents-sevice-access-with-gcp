@@ -1,0 +1,19 @@
+trying to update to nodepool 18... to 20...
+in between there is issue in N2_cpu quata shortage
+increase the quata 1500 to 2000
+once its done then re-create node pool (pool-1)
+but there is again issue with networking (shotage of IP)
+
+then i have created node manual 1 by 1 in new node pool (pool-1 )and simantauly  corden and delete 1 by 1 manaually from old node (pool-3)
+
+then i have created all node manaully 
+
+and started update new pool (pool ) 19... to 20.. 
+
+onece its done then work on REQ0144581 this ticket 
+
+explore the non prod mulesoft env cluster
+
+created the report of cpu utizaltion and send to usman 
+
+update the ticket status as welll 
