@@ -1,0 +1,1 @@
+gcloud compute addresses create im-int-lb-p01-c1 --region us-central1 --subnet projects/prod-host-project/regions/us-central1/subnetworks/secureapp-non-pci-iowa --project project_name
