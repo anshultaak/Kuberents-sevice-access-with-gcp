@@ -16,7 +16,9 @@ kind: Secret
 metadata:
   name: mysecret
 type: kubernetes.io/tls
+#After a YAML file has been added, we need to apply this YAML file for creating the secret under K8S Cluster desired namespace as follows:
 kubectl apply -f filename.yaml -n namespace
+#Once successfully applied, it will add a TLS secret under that namespace. Now this TLS secret needs to be added under GCP Ingress for the particular application environment.
 
 3. Adding Secret name under Ingress:
 #Now the secret we added, needs to be modified under Ingress YAML file for new certificates to take affect.
