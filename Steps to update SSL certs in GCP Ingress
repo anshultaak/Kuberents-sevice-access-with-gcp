@@ -4,18 +4,26 @@ Steps to update SSL certs in GCP Ingress
 #In order to add TLS secrets, we need to convert the certificate.pem and key file in to base46 format first.
 base64 certificate.pem | tr -d \\n              # copy encrypt output
 base64 keyname.key | tr -d \\n                      # copy encrypt output
-These commands will provide the base64 encoded outputs for both files which needs to be added under a YAML file for creating a TLS Secret.
+#These commands will provide the base64 encoded outputs for both files which needs to be added under a YAML file for creating a TLS Secret.
 
 2. Adding a TLS secrets under K8S Cluster:
-Now we need to create a YAML file in following format and add the base64 encoded code for crt and key file as follows:
+#Now we need to create a YAML file in following format and add the base64 encoded code for crt and key file as follows:
+apiVersion: v1
+data:
+  tls.crt: paste_encrpyt_certificate
+  tls.key: paste_encrpyt_key
+kind: Secret
+metadata:
+  name: mysecret
+type: kubernetes.io/tls
 kubectl apply -f filename.yaml -n namespace
 
 3. Adding Secret name under Ingress:
-Now the secret we added, needs to be modified under Ingress YAML file for new certificates to take affect.
-Note: Make sure to have a backup copy of existing ingress yaml before any modifications.
-Following command can be used for backing up ingress yaml:
+#Now the secret we added, needs to be modified under Ingress YAML file for new certificates to take affect.
+#Note: Make sure to have a backup copy of existing ingress yaml before any modifications.
+#Following command can be used for backing up ingress yaml:
 kubectl get ingress INGRESS_NAME -n NAMESPACE -o yaml > INGRESS_BACKUP_FILE.yaml
-Now, we can edit the ingress as follows:
+#Now, we can edit the ingress as follows:
 kubectl edit ingress INGRESS_NAME -n NAMESPACE
-After editing ingress, we need to update the name of secret if the new TLS secret was created. 
-NOTE: If existing TLS secret was updated with the new .crt and .key base64 code, then this step would not be needed.
+#After editing ingress, we need to update the name of secret if the new TLS secret was created. 
+#NOTE: If existing TLS secret was updated with the new .crt and .key base64 code, then this step would not be needed.
