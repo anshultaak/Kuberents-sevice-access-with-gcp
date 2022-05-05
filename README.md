@@ -1,2 +1,2 @@
 # Kuberents-sevice-access-with-gcp
-connect your kuberents service acesss with GCP
+https://cloud.google.com/kubernetes-engine/docs/how-to/creating-a-zonal-cluster
