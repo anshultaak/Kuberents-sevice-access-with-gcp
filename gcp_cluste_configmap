@@ -1,0 +1,46 @@
+# Configuring and deploying the ip-masq-agent
+#Create a configuration file using the following template and save it locally. You can use any name for the local copy of this configuration file.
+nonMasqueradeCIDRs:
+  - CIDR_1
+  - CIDR_2
+masqLinkLocal: false
+resyncInterval: SYNC_INTERVAL
+
+
+example=
+vi config
+nonMasqueradeCIDRs:
+resyncInterval: 60s
+# Create the ConfigMap resource:
+kubectl create configmap ip-masq-agent --from-file config --namespace kube-syste
+# Describe the ip-masq-agent ConfigMap in the kube-system namespace:
+kubectl describe configmaps/ip-masq-agent -n kube-system
+#The output is similar to the following:
+
+
+Name:         ip-masq-agent
+Namespace:    kube-system
+Labels:       <none>
+Annotations:  <none>
+
+Data
+====
+config:
+----
+nonMasqueradeCIDRs:
+  - 198.15.5.92/24
+  - 10.0.0.0/8
+masqLinkLocal: false
+resyncInterval: 60s
+
+BinaryData
+====
+Events:  <none>
+
+example=
+# you can add data inside
+data:
+  upstreamNameservers: |
+    [ "10.160.116.52", "10.160.116.53" ]
+    
+
